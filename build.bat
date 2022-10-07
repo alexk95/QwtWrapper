@@ -49,6 +49,12 @@ IF "%2"=="BUILD" (
 )
 
 REM Clean up the build logs
+
+if "%3"=="SKIP" (
+	ECHO Skipping build log cleanup
+	goto BUILD_START
+)
+
 if "%1"=="" (
 	DEL buildLog_Debug.txt
 	DEL buildLog_Release.txt
@@ -66,6 +72,8 @@ if "%1"=="RELEASE" (
 if "%1"=="DEBUG" (
 	DEL buildLog_Debug.txt
 )
+
+:BUILD_START
 
 IF %DEBUG%==1 (
 	ECHO %TYPE_NAME% DEBUG
